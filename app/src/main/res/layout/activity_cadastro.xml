@@ -1,6 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/new_background"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/Logo2"
+        android:layout_width="445dp"
+        android:layout_height="172dp"
+        app:srcCompat="@mipmap/logo" />
+
+    <EditText
+        android:id="@+id/editTextNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/background_texto"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:drawablePadding="6sp"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:hint="@string/name"
+        android:textSize="20sp"
+        android:inputType="textPersonName"
+        android:minHeight="48sp"
+        android:padding="10sp"
+        android:textColor="#FDBC19"
+        android:textColorHint="#FDBC19" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/background_texto"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:drawablePadding="6dp"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:hint="@string/email"
+        android:textSize="20sp"
+        android:inputType="textWebEmailAddress|textPersonName"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="#FDBC19"
+        android:textColorHint="#FDBC19" />
+
+    <EditText
+        android:id="@+id/editTextSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/background_texto"
+        android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:drawablePadding="6dp"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:hint="@string/senha"
+        android:textSize="20sp"
+        android:inputType="textPersonName|textPassword"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="#FDBC19"
+        android:textColorHint="#FDBC19" />
+
+    <Button
+        android:id="@+id/buttonCadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_botao"
+        android:fontFamily="sans-serif-black"
+        android:hint="@string/cad"
+        android:textColorHint="#FDBC19"
+        android:textSize="20sp"
+        android:backgroundTint="@color/colorPrimaryDark"/>
+</LinearLayout>

@@ -5,4 +5,5 @@
     <string name="cad">Register</string>
     <string name="senha">Pass</string>
     <string name="login">Login</string>
+    <string name="text">Fill in all fields!</string>
 </resources>
