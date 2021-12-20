@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryDark"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <Button
+        android:id="@+id/buttonPower"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginStart="0dp"
+        android:background="@drawable/power_foreground"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/buttonPowerOn"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="0dp"
+        android:background="@drawable/poweron_foreground" />
+
+    <Button
+        android:id="@+id/buttonPowerOff"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="0dp"
+        android:background="@drawable/poweroff_foreground" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="0dp"
+        android:background="@drawable/print_foreground" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="185dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn"
+        app:srcCompat="@mipmap/logo_foreground" />
+
+</LinearLayout>

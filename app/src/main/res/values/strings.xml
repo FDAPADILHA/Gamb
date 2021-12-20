@@ -6,4 +6,9 @@
     <string name="senha">Pass</string>
     <string name="login">Login</string>
     <string name="text">Fill in all fields!</string>
+    <string name="powere">Device Admin: enabled</string>
+    <string name="powerd">Device Admin: disabled</string>
+    <string name="permission1">You need permission to perform this function!</string>
+    <string name="permission2">Why do you need permission?</string>
+    <string name="permissionalert">Problem configuring permission!</string>
 </resources>
