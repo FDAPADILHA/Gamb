@@ -146,7 +146,7 @@ public class ToolsFunctionsActivity extends AppCompatActivity implements View.On
 
         try {
            // FileOutputStream fileOutputStream = new FileOutputStream(imageFile);
-          //  bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
+           //  bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
             MediaStore.Images.Media.insertImage(getContentResolver(),bitmap,fileName,fileName+"teste123");
            // fileOutputStream.flush();
             Toast.makeText(ToolsFunctionsActivity.this, R.string.printsuccess, Toast.LENGTH_LONG).show();
