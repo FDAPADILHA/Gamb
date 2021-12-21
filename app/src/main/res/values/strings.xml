@@ -14,4 +14,5 @@
     <string name="permissionalert">Problem configuring permission!</string>
     <string name="printsuccess">Successfully Print!</string>
     <string name="printfail">Failed Print</string>
+    <string name="cadfail">Register failed</string>
 </resources>

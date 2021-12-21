@@ -42,15 +42,16 @@ public class MainActivity extends AppCompatActivity{
 
         auth = FirebaseAuth.getInstance();
 
-//        authStateListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                if(usuario != null){
-//                    Intent intent = new Intent(MainActivity.this, ToolsFunctionsActivity.class);
-//                    startActivity(intent);
-//                }
-//            }
-//        };
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                usuario = auth.getCurrentUser();
+                if(usuario != null){
+                    Intent intent = new Intent(MainActivity.this, ToolsFunctionsActivity.class);
+                    startActivity(intent);
+                }
+            }
+        };
 
     }
     public void setButtonCadastre() {
@@ -87,10 +88,10 @@ public class MainActivity extends AppCompatActivity{
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 usuario = auth.getCurrentUser();
-                                if(usuario != null){
-                                    Intent intent = new Intent(MainActivity.this, ToolsFunctionsActivity.class);
-                                    startActivity(intent);
-                                }
+//                                if(usuario != null){
+//                                    Intent intent = new Intent(MainActivity.this, ToolsFunctionsActivity.class);
+//                                    startActivity(intent);
+//                                }
                             }else{
                                 task.getException().toString();
                                 Toast.makeText(MainActivity.this, R.string.textfail, Toast.LENGTH_LONG).show();
@@ -99,6 +100,12 @@ public class MainActivity extends AppCompatActivity{
                     });
         }
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(authStateListener);
     }
 
 }

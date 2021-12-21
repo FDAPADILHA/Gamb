@@ -17,6 +17,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -35,6 +36,7 @@ import java.util.Random;
 public class ToolsFunctionsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button buttonPower, buttonPowerOn, buttonPowerOff, btn;
+    private ImageView menu;
     public static final int RESULT_ENABLE = 11;
     private DevicePolicyManager devicePolicyManager;
     private ActivityManager activityManager;
@@ -52,13 +54,14 @@ public class ToolsFunctionsActivity extends AppCompatActivity implements View.On
         buttonPower = findViewById(R.id.buttonPower);
         buttonPowerOn = findViewById(R.id.buttonPowerOn);
         buttonPowerOff = findViewById(R.id.buttonPowerOff);
+        menu = findViewById(R.id.imageView);
+        menu.setOnClickListener(this);
         buttonPower.setOnClickListener(this);
         buttonPowerOn.setOnClickListener(this);
         buttonPowerOff.setOnClickListener(this);
 
         verifyStoragePermission(this);
         btn = findViewById(R.id.btn);
-
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,6 +101,10 @@ public class ToolsFunctionsActivity extends AppCompatActivity implements View.On
             devicePolicyManager.removeActiveAdmin(compName);
             buttonPowerOff.setVisibility(View.GONE);
             buttonPowerOn.setVisibility(View.VISIBLE);
+        }else if(view == menu){
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(ToolsFunctionsActivity.this, MainActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -173,9 +180,4 @@ public class ToolsFunctionsActivity extends AppCompatActivity implements View.On
         }
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        FirebaseAuth.getInstance().signOut();
-    }
 }
