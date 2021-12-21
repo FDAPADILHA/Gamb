@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "154974484252",
+    "project_id": "gamb-3105f",
+    "storage_bucket": "gamb-3105f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154974484252:android:05c8923457a3d22946acd9",
+        "android_client_info": {
+          "package_name": "br.com.filnat.gamb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154974484252-luqseihsboqqdbhhrjsbnusa6u99pi1u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa6f9fOw92BPKWQnizuWUQFwA8CU6TkSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154974484252-luqseihsboqqdbhhrjsbnusa6u99pi1u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

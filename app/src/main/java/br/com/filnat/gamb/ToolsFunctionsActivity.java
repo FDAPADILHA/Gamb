@@ -1,16 +1,20 @@
 package br.com.filnat.gamb;
 
 import android.Manifest;
-import android.accessibilityservice.AccessibilityService;
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -19,14 +23,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.util.Date;
+import java.io.OutputStream;
+import java.util.Random;
 
-public class ToolsFunctions extends AppCompatActivity implements View.OnClickListener {
+public class ToolsFunctionsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button buttonPower, buttonPowerOn, buttonPowerOff, btn;
     public static final int RESULT_ENABLE = 11;
@@ -56,7 +62,8 @@ public class ToolsFunctions extends AppCompatActivity implements View.OnClickLis
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                takeScreenShot(getWindow().getDecorView().getRootView(), "print");
+                int key = new Random().nextInt(100)+1;
+                takeScreenShot(getWindow().getDecorView().getRootView(), "print"+Integer.toString(key));
             }
         });
     }
@@ -100,9 +107,9 @@ public class ToolsFunctions extends AppCompatActivity implements View.OnClickLis
         switch(requestCode) {
             case RESULT_ENABLE:
                 if(resultCode == AppCompatActivity.RESULT_OK){
-                    Toast.makeText(ToolsFunctions.this, R.string.permission1, Toast.LENGTH_LONG).show();
+                    Toast.makeText(ToolsFunctionsActivity.this, R.string.permission1, Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(ToolsFunctions.this, R.string.permissionalert, Toast.LENGTH_LONG).show();
+                    Toast.makeText(ToolsFunctionsActivity.this, R.string.permissionalert, Toast.LENGTH_LONG).show();
                 }
                 break;
         }
@@ -111,7 +118,7 @@ public class ToolsFunctions extends AppCompatActivity implements View.OnClickLis
 
     //ScreenShot
 
-    private static File takeScreenShot(View view, String fileName) {
+    private void takeScreenShot(View view, String fileName) {
 
         //Date date = new Date();
         //CharSequence format = DateFormat.getDateInstance(DateFormat.SHORT).format(date);
@@ -121,7 +128,6 @@ public class ToolsFunctions extends AppCompatActivity implements View.OnClickLis
             File fileDir = new File(dirPath);
             if (!fileDir.exists())
                  fileDir.mkdir();
-
             //String path = dirPath + "/" + fileName + "-" + format + ".jpeg";
             String path = dirPath + "/" + fileName + ".jpeg";
 
@@ -132,18 +138,24 @@ public class ToolsFunctions extends AppCompatActivity implements View.OnClickLis
             File imageFile = new File(path);
 
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
-            fileOutputStream.flush();
-            fileOutputStream.close();
-            return imageFile;
+           // FileOutputStream fileOutputStream = new FileOutputStream(imageFile);
+          //  bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
+            MediaStore.Images.Media.insertImage(getContentResolver(),bitmap,fileName,fileName+"teste123");
+           // fileOutputStream.flush();
+            Toast.makeText(ToolsFunctionsActivity.this, R.string.printsuccess, Toast.LENGTH_LONG).show();
+           // return imageFile;
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+//        } catch (FileNotFoundException e) {
+//            Toast.makeText(ToolsFunctionsActivity.this, R.string.printfail, Toast.LENGTH_LONG).show();
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            Toast.makeText(ToolsFunctionsActivity.this, R.string.printfail, Toast.LENGTH_LONG).show();
+//            e.printStackTrace();
+       } catch (Exception e) {
+            Toast.makeText(ToolsFunctionsActivity.this, R.string.printfail, Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-        return null;
+//        return null;
     }
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -161,4 +173,9 @@ public class ToolsFunctions extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FirebaseAuth.getInstance().signOut();
+    }
 }
